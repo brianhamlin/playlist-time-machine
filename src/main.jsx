@@ -271,7 +271,6 @@ function ClickWheel({
 }) {
   const wheelRef = useRef(null);
   const tracking = useRef({ active: false, angle: 0, accumulated: 0 });
-  const [spin, setSpin] = useState(0);
 
   const startTracking = (event) => {
     if (!wheelRef.current) return;
@@ -289,7 +288,6 @@ function ClickWheel({
     const delta = normalizeDelta(angle - tracking.current.angle);
     tracking.current.angle = angle;
     tracking.current.accumulated += delta;
-    setSpin((value) => value + delta);
 
     if (Math.abs(tracking.current.accumulated) > 12) {
       onMove(tracking.current.accumulated > 0 ? 1 : -1);
@@ -312,7 +310,6 @@ function ClickWheel({
       onTouchStart={startTracking}
       onTouchMove={track}
       onTouchEnd={stopTracking}
-      style={{ "--spin": `${spin}deg` }}
       aria-label="Click wheel. Rotate to browse, use buttons to navigate."
     >
       <button className="wheel-button menu" onClick={onMenu}>
@@ -323,10 +320,18 @@ function ClickWheel({
         onClick={onPrevious}
         aria-label="previous"
       >
-        ⏪
+        <svg className="skip-icon" viewBox="0 0 30 14" aria-hidden="true" focusable="false">
+          <rect x="2" y="1" width="2.6" height="12" rx="1" />
+          <path d="M5 7 15 1 15 13Z" />
+          <path d="M15 7 25 1 25 13Z" />
+        </svg>
       </button>
       <button className="wheel-button next" onClick={onNext} aria-label="next">
-        ⏩
+        <svg className="skip-icon" viewBox="0 0 30 14" aria-hidden="true" focusable="false">
+          <path d="M5 1 15 7 5 13Z" />
+          <path d="M15 1 25 7 15 13Z" />
+          <rect x="25.4" y="1" width="2.6" height="12" rx="1" />
+        </svg>
       </button>
       <button
         className="wheel-button play"
