@@ -1,0 +1,412 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+:root {
+  color: #10131a;
+  background: #10131a;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(117, 166, 255, 0.28), transparent 28rem),
+    radial-gradient(circle at 85% 80%, rgba(255, 210, 86, 0.24), transparent 28rem),
+    linear-gradient(135deg, #121722 0%, #26212a 52%, #100f14 100%);
+}
+
+button {
+  font: inherit;
+}
+
+.page-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: clamp(0.75rem, 3vw, 2rem);
+  overflow: hidden;
+  position: relative;
+}
+
+.page-shell::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 3rem 3rem;
+  mask-image: radial-gradient(circle at center, black, transparent 75%);
+}
+
+.ipod {
+  --body: #f2f1eb;
+  --body-dark: #c8c7c2;
+  width: min(92vw, 27rem);
+  aspect-ratio: 0.58;
+  min-height: 42rem;
+  max-height: 90vh;
+  justify-self: center;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(1.2rem, 4vw, 1.8rem);
+  border-radius: clamp(2rem, 6vw, 3.1rem);
+  background:
+    linear-gradient(115deg, rgba(255,255,255,0.98), rgba(226,225,218,0.94) 43%, rgba(255,255,255,0.86) 100%),
+    var(--body);
+  box-shadow:
+    inset 1rem 0 2rem rgba(255,255,255,0.82),
+    inset -1rem 0 2rem rgba(153,154,150,0.34),
+    0 2.4rem 5rem rgba(0,0,0,0.48),
+    0 0.3rem 0.8rem rgba(0,0,0,0.22);
+}
+
+.ipod-top-shine {
+  position: absolute;
+  inset: 0.7rem 1rem auto;
+  height: 42%;
+  border-radius: 2.4rem;
+  background: linear-gradient(115deg, rgba(255,255,255,0.56), transparent 54%);
+  pointer-events: none;
+}
+
+.screen {
+  width: 100%;
+  height: 43%;
+  min-height: 17rem;
+  position: relative;
+  z-index: 1;
+  border: 0.42rem solid #171a20;
+  border-radius: 0.8rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,0.7), transparent 38%),
+    linear-gradient(#dff4fb, #a9d0dc 48%, #7aa2b2);
+  box-shadow:
+    inset 0 0 1.1rem rgba(255,255,255,0.52),
+    inset 0 0 3rem rgba(71, 170, 209, 0.26),
+    0 0.65rem 1.2rem rgba(0,0,0,0.22);
+  transition: filter 450ms ease, box-shadow 450ms ease, background 450ms ease;
+}
+
+.screen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(120deg, rgba(255,255,255,0.32), transparent 28%, transparent 58%, rgba(255,255,255,0.12) 70%, transparent),
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.08) 0 1px, transparent 1px 3px);
+  mix-blend-mode: screen;
+}
+
+.screen-on {
+  box-shadow:
+    inset 0 0 1.1rem rgba(255,255,255,0.7),
+    inset 0 0 3rem rgba(54, 203, 255, 0.4),
+    0 0 2rem rgba(105, 220, 255, 0.36),
+    0 0.65rem 1.2rem rgba(0,0,0,0.22);
+}
+
+.screen-dim {
+  filter: saturate(0.45) brightness(0.62);
+  background: linear-gradient(#9fb0b1, #71898f 52%, #4f676f);
+}
+
+.screen-header {
+  height: 1.8rem;
+  display: grid;
+  grid-template-columns: 3rem 1fr auto auto;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0 0.55rem;
+  color: #102230;
+  font-size: 0.72rem;
+  background: linear-gradient(#f9fdff, #bfdae2);
+  border-bottom: 1px solid rgba(16,34,48,0.28);
+}
+
+.screen-header strong {
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.signal {
+  font-weight: 700;
+}
+
+.battery {
+  width: 1.25rem;
+  height: 0.55rem;
+  border: 1px solid #102230;
+  border-radius: 0.12rem;
+  padding: 1px;
+  position: relative;
+}
+
+.battery::after {
+  content: "";
+  position: absolute;
+  right: -0.25rem;
+  top: 0.13rem;
+  width: 0.15rem;
+  height: 0.25rem;
+  background: #102230;
+}
+
+.battery i {
+  display: block;
+  width: 75%;
+  height: 100%;
+  background: #1f9e55;
+}
+
+.screen-body {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0.55rem;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+
+.screen-body::-webkit-scrollbar {
+  display: none;
+}
+
+.playlist-card {
+  margin-bottom: 0.45rem;
+  padding: 0.55rem;
+  border-radius: 0.45rem;
+  color: #163142;
+  background: rgba(255,255,255,0.42);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.36);
+}
+
+.playlist-card span {
+  display: block;
+  margin-bottom: 0.2rem;
+  font-weight: 800;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.playlist-card p {
+  margin: 0;
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
+.menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-radius: 0.45rem;
+  overflow: hidden;
+  background: rgba(255,255,255,0.24);
+}
+
+.menu-list li {
+  min-height: 2.72rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem;
+  padding: 0.42rem 0.55rem;
+  color: #102230;
+  border-bottom: 1px solid rgba(16,34,48,0.16);
+  cursor: pointer;
+  transition: background 120ms ease, color 120ms ease, transform 120ms ease;
+}
+
+.menu-list li:active {
+  transform: scale(0.985);
+}
+
+.menu-list li.selected {
+  color: white;
+  background: linear-gradient(90deg, #185fd2, #3e9ef7);
+}
+
+.menu-list strong,
+.menu-list small {
+  display: block;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.menu-list strong {
+  font-size: 0.88rem;
+}
+
+.menu-list small,
+.meta {
+  opacity: 0.76;
+  font-size: 0.72rem;
+}
+
+.click-wheel {
+  --wheel-size: min(74vw, 19.2rem);
+  width: var(--wheel-size);
+  height: var(--wheel-size);
+  flex: 0 0 auto;
+  margin-top: clamp(1.2rem, 4vh, 2.2rem);
+  position: relative;
+  z-index: 1;
+  border-radius: 50%;
+  background:
+    conic-gradient(from var(--spin), rgba(255,255,255,0.42), rgba(210,210,205,0.12), rgba(255,255,255,0.42), rgba(197,197,193,0.18), rgba(255,255,255,0.42)),
+    linear-gradient(145deg, #fefefe, #d9d9d4);
+  box-shadow:
+    inset 0.45rem 0.45rem 0.9rem rgba(255,255,255,0.88),
+    inset -0.55rem -0.55rem 1.1rem rgba(126,126,120,0.28),
+    0 0.45rem 0.8rem rgba(0,0,0,0.16);
+  touch-action: none;
+  user-select: none;
+}
+
+.wheel-groove {
+  position: absolute;
+  inset: 1.1rem;
+  border-radius: 50%;
+  border: 1px solid rgba(130,130,125,0.18);
+  pointer-events: none;
+}
+
+.wheel-button,
+.center-button {
+  position: absolute;
+  border: 0;
+  background: transparent;
+  color: #8d8d88;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 120ms ease, color 120ms ease, text-shadow 120ms ease;
+}
+
+.wheel-button:hover,
+.wheel-button:focus-visible {
+  color: #565650;
+  text-shadow: 0 0 0.8rem rgba(77, 147, 255, 0.4);
+}
+
+.wheel-button:active,
+.center-button:active {
+  transform: scale(0.92);
+}
+
+.wheel-button.menu {
+  top: 1.65rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+}
+
+.wheel-button.prev,
+.wheel-button.next {
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.05rem;
+}
+
+.wheel-button.prev {
+  left: 1.7rem;
+}
+
+.wheel-button.next {
+  right: 1.7rem;
+}
+
+.wheel-button.play {
+  bottom: 1.55rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.9rem;
+}
+
+.center-button {
+  width: 40%;
+  height: 40%;
+  inset: 30%;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #deded9, #fbfbf8);
+  box-shadow:
+    inset 0.35rem 0.35rem 0.7rem rgba(255,255,255,0.8),
+    inset -0.45rem -0.45rem 0.8rem rgba(126,126,120,0.25),
+    0 0.2rem 0.45rem rgba(0,0,0,0.12);
+}
+
+.center-button:focus-visible,
+.wheel-button:focus-visible {
+  outline: 3px solid rgba(56, 149, 255, 0.85);
+  outline-offset: 0.25rem;
+}
+
+@media (max-width: 820px) {
+  .page-shell {
+    min-height: 100svh;
+    padding: 0.75rem;
+  }
+
+  .ipod {
+    width: min(96vw, 25rem);
+    min-height: auto;
+    height: min(96svh, 45rem);
+    padding: 1rem;
+    border-radius: 2.25rem;
+  }
+
+  .screen {
+    height: 43%;
+    min-height: 15.5rem;
+  }
+
+  .click-wheel {
+    --wheel-size: min(72vw, 17.4rem);
+    margin-top: auto;
+  }
+}
+
+@media (max-width: 430px) {
+  .page-shell {
+    padding: 0.35rem;
+  }
+
+  .ipod {
+    width: 100%;
+    height: calc(100svh - 0.7rem);
+    border-radius: 1.8rem;
+  }
+
+  .screen {
+    min-height: 14.6rem;
+  }
+
+  .menu-list li {
+    min-height: 2.45rem;
+  }
+}

@@ -1,0 +1,141 @@
+[
+  {
+    "id": "winter-2006",
+    "title": "Winter Bus Rides",
+    "date": "Jan 2006",
+    "description": "The songs that lived on repeat during cold morning commutes.",
+    "songs": [
+      { "title": "Such Great Heights", "artist": "The Postal Service", "duration": "4:26" },
+      { "title": "Float On", "artist": "Modest Mouse", "duration": "3:28" },
+      { "title": "First Day of My Life", "artist": "Bright Eyes", "duration": "3:08" },
+      { "title": "Banquet", "artist": "Bloc Party", "duration": "3:21" },
+      { "title": "The District Sleeps Alone Tonight", "artist": "The Postal Service", "duration": "4:44" },
+      { "title": "New Slang", "artist": "The Shins", "duration": "3:51" },
+      { "title": "Soul Meets Body", "artist": "Death Cab for Cutie", "duration": "3:49" },
+      { "title": "Lua", "artist": "Bright Eyes", "duration": "4:31" },
+      { "title": "Rebellion (Lies)", "artist": "Arcade Fire", "duration": "5:10" }
+    ]
+  },
+  {
+    "id": "summer-2008",
+    "title": "Summer Car Window",
+    "date": "Jul 2008",
+    "description": "Sun glare, cracked pavement, and friends yelling every chorus.",
+    "songs": [
+      { "title": "Kids", "artist": "MGMT", "duration": "5:02" },
+      { "title": "1901", "artist": "Phoenix", "duration": "3:13" },
+      { "title": "Electric Feel", "artist": "MGMT", "duration": "3:49" },
+      { "title": "Oxford Comma", "artist": "Vampire Weekend", "duration": "3:15" },
+      { "title": "A-Punk", "artist": "Vampire Weekend", "duration": "2:17" },
+      { "title": "Young Folks", "artist": "Peter Bjorn and John", "duration": "4:39" },
+      { "title": "Lisztomania", "artist": "Phoenix", "duration": "4:02" },
+      { "title": "Time to Pretend", "artist": "MGMT", "duration": "4:21" },
+      { "title": "Cape Cod Kwassa Kwassa", "artist": "Vampire Weekend", "duration": "3:34" },
+      { "title": "Two Weeks", "artist": "Grizzly Bear", "duration": "4:03" }
+    ]
+  },
+  {
+    "id": "late-night-2010",
+    "title": "Late Night Downloads",
+    "date": "Nov 2010",
+    "description": "For the tiny hours when everything sounded more important.",
+    "songs": [
+      { "title": "Holocene", "artist": "Bon Iver", "duration": "5:37" },
+      { "title": "Midnight City", "artist": "M83", "duration": "4:04" },
+      { "title": "Zebra", "artist": "Beach House", "duration": "4:49" },
+      { "title": "Bloodbuzz Ohio", "artist": "The National", "duration": "4:36" },
+      { "title": "Ready to Start", "artist": "Arcade Fire", "duration": "4:15" },
+      { "title": "Norway", "artist": "Beach House", "duration": "3:55" },
+      { "title": "Skinny Love", "artist": "Bon Iver", "duration": "3:58" },
+      { "title": "Conversation 16", "artist": "The National", "duration": "4:18" },
+      { "title": "Wait", "artist": "M83", "duration": "5:43" }
+    ]
+  },
+  {
+    "id": "mixtape-for-someone",
+    "title": "Mixtape for Someone",
+    "date": "Mar 2012",
+    "description": "Carefully sequenced, never sent, absolutely overthought.",
+    "songs": [
+      { "title": "Sweet Disposition", "artist": "The Temper Trap", "duration": "3:54" },
+      { "title": "Home", "artist": "Edward Sharpe & The Magnetic Zeros", "duration": "5:03" },
+      { "title": "Heartbeats", "artist": "José González", "duration": "2:40" },
+      { "title": "Maps", "artist": "Yeah Yeah Yeahs", "duration": "3:40" },
+      { "title": "I Will Follow You into the Dark", "artist": "Death Cab for Cutie", "duration": "3:09" },
+      { "title": "Sea of Love", "artist": "Cat Power", "duration": "2:19" },
+      { "title": "Anyone Else But You", "artist": "The Moldy Peaches", "duration": "2:59" },
+      { "title": "Such Great Heights", "artist": "Iron & Wine", "duration": "4:12" },
+      { "title": "First Love / Late Spring", "artist": "Mitski", "duration": "4:38" }
+    ]
+  },
+  {
+    "id": "after-school-2004",
+    "title": "After School Static",
+    "date": "Sep 2004",
+    "description": "Burned CDs, backpack headphones, and late afternoon local radio.",
+    "songs": [
+      { "title": "Mr. Brightside", "artist": "The Killers", "duration": "3:42" },
+      { "title": "Take Me Out", "artist": "Franz Ferdinand", "duration": "3:57" },
+      { "title": "Somebody Told Me", "artist": "The Killers", "duration": "3:17" },
+      { "title": "American Idiot", "artist": "Green Day", "duration": "2:54" },
+      { "title": "Ocean Avenue", "artist": "Yellowcard", "duration": "3:18" },
+      { "title": "The Middle", "artist": "Jimmy Eat World", "duration": "2:46" },
+      { "title": "All These Things That I've Done", "artist": "The Killers", "duration": "5:01" },
+      { "title": "Helena", "artist": "My Chemical Romance", "duration": "3:24" },
+      { "title": "Feeling This", "artist": "blink-182", "duration": "2:53" }
+    ]
+  },
+  {
+    "id": "rainy-apartment",
+    "title": "Rainy Apartment",
+    "date": "Apr 2014",
+    "description": "Window glass, desk lamps, and songs that made the room feel bigger.",
+    "songs": [
+      { "title": "Cherry Wine", "artist": "Hozier", "duration": "4:00" },
+      { "title": "Pink Rabbits", "artist": "The National", "duration": "4:36" },
+      { "title": "Myth", "artist": "Beach House", "duration": "4:18" },
+      { "title": "Retrograde", "artist": "James Blake", "duration": "3:43" },
+      { "title": "Open", "artist": "Rhye", "duration": "3:37" },
+      { "title": "To Build a Home", "artist": "The Cinematic Orchestra", "duration": "6:10" },
+      { "title": "Video Games", "artist": "Lana Del Rey", "duration": "4:42" },
+      { "title": "Youth", "artist": "Daughter", "duration": "4:13" },
+      { "title": "Smother", "artist": "Daughter", "duration": "4:02" },
+      { "title": "Anchor", "artist": "Novo Amor", "duration": "4:16" }
+    ]
+  },
+  {
+    "id": "midnight-drive",
+    "title": "Midnight Drive",
+    "date": "Aug 2016",
+    "description": "Empty roads, dashboard glow, and one last loop around town.",
+    "songs": [
+      { "title": "The Less I Know the Better", "artist": "Tame Impala", "duration": "3:36" },
+      { "title": "Dreams Tonite", "artist": "Alvvays", "duration": "3:16" },
+      { "title": "Clearest Blue", "artist": "CHVRCHES", "duration": "3:53" },
+      { "title": "Eventually", "artist": "Tame Impala", "duration": "5:19" },
+      { "title": "On Hold", "artist": "The xx", "duration": "3:44" },
+      { "title": "Space Song", "artist": "Beach House", "duration": "5:20" },
+      { "title": "Oblivion", "artist": "Grimes", "duration": "4:11" },
+      { "title": "Me & You Together Song", "artist": "The 1975", "duration": "3:27" },
+      { "title": "Chateau Lobby #4", "artist": "Father John Misty", "duration": "2:50" }
+    ]
+  },
+  {
+    "id": "kitchen-speakers",
+    "title": "Kitchen Speakers",
+    "date": "May 2019",
+    "description": "Dinner, dishes, and tracks that somehow made cleanup tolerable.",
+    "songs": [
+      { "title": "Make Me Feel", "artist": "Janelle Monáe", "duration": "3:14" },
+      { "title": "Juice", "artist": "Lizzo", "duration": "3:15" },
+      { "title": "Dancing on My Own", "artist": "Robyn", "duration": "4:48" },
+      { "title": "Want You in My Room", "artist": "Carly Rae Jepsen", "duration": "2:46" },
+      { "title": "Redbone", "artist": "Childish Gambino", "duration": "5:27" },
+      { "title": "Come Down", "artist": "Anderson .Paak", "duration": "2:56" },
+      { "title": "Good as Hell", "artist": "Lizzo", "duration": "2:39" },
+      { "title": "Dang!", "artist": "Mac Miller", "duration": "5:05" },
+      { "title": "Bags", "artist": "Clairo", "duration": "4:20" },
+      { "title": "Nobody", "artist": "Mitski", "duration": "3:14" }
+    ]
+  }
+]
