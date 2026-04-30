@@ -28,6 +28,7 @@ function App() {
   const screenBodyRef = useRef(null);
   const selectedItemRef = useRef(null);
   const audioContextRef = useRef(null);
+  const audioUnlockedRef = useRef(false);
 
   const currentPlaylist = playlists[playlistIndex];
   const visibleItems = view === "playlists" ? playlists : currentPlaylist.songs;
@@ -42,13 +43,36 @@ function App() {
     );
   };
 
-  const playClickWheelTick = () => {
+  const unlockAudio = async () => {
     const AudioContext = window.AudioContext || window.webkitAudioContext;
-    if (!AudioContext) return;
+    if (!AudioContext) return null;
 
     const context = audioContextRef.current || new AudioContext();
     audioContextRef.current = context;
-    if (context.state === "suspended") context.resume();
+
+    if (!audioUnlockedRef.current) {
+      const buffer = context.createBuffer(1, 1, context.sampleRate);
+      const source = context.createBufferSource();
+      source.buffer = buffer;
+      source.connect(context.destination);
+      source.start(0);
+      audioUnlockedRef.current = true;
+    }
+
+    if (context.state === "suspended") {
+      try {
+        await context.resume();
+      } catch {
+        return context;
+      }
+    }
+
+    return context;
+  };
+
+  const playClickWheelTick = async () => {
+    const context = await unlockAudio();
+    if (!context || context.state !== "running") return;
 
     const t = context.currentTime;
     const duration = 0.02;
@@ -236,6 +260,7 @@ function App() {
           onPrevious={previous}
           onNext={next}
           onPlayPause={togglePlay}
+          onPrimeAudio={unlockAudio}
         />
       </section>
     </main>
@@ -268,11 +293,13 @@ function ClickWheel({
   onPrevious,
   onNext,
   onPlayPause,
+  onPrimeAudio,
 }) {
   const wheelRef = useRef(null);
   const tracking = useRef({ active: false, angle: 0, accumulated: 0 });
 
   const startTracking = (event) => {
+    onPrimeAudio();
     if (!wheelRef.current) return;
     tracking.current = {
       active: true,
