@@ -268,6 +268,77 @@ button {
   font-size: 0.72rem;
 }
 
+.track-detail {
+  color: #102230;
+}
+
+.track-hero {
+  padding: 0.65rem;
+  border-radius: 0.5rem;
+  background: linear-gradient(135deg, rgba(255,255,255,0.64), rgba(255,255,255,0.28));
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.38);
+}
+
+.now-playing {
+  display: inline-block;
+  margin-bottom: 0.3rem;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #185fd2;
+}
+
+.track-hero h2 {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.12;
+}
+
+.track-hero p {
+  margin: 0.22rem 0 0;
+  font-size: 0.78rem;
+  opacity: 0.78;
+}
+
+.track-facts {
+  margin: 0.55rem 0 0;
+  border-radius: 0.45rem;
+  overflow: hidden;
+  background: rgba(255,255,255,0.28);
+}
+
+.track-facts div {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  gap: 0.5rem;
+  padding: 0.42rem 0.55rem;
+  border-bottom: 1px solid rgba(16,34,48,0.14);
+}
+
+.track-facts dt,
+.track-facts dd {
+  min-width: 0;
+  margin: 0;
+  font-size: 0.72rem;
+  line-height: 1.28;
+}
+
+.track-facts dt {
+  font-weight: 800;
+  opacity: 0.72;
+}
+
+.track-facts dd {
+  overflow-wrap: anywhere;
+}
+
+.empty-state {
+  margin: 0;
+  padding: 0.7rem;
+  color: #102230;
+}
+
 .click-wheel {
   --wheel-size: min(74vw, 19.2rem);
   width: var(--wheel-size);

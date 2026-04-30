@@ -1,7 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
-import playlists from "./data/playlists.json";
+import playlistData from "./data/playlists.json";
 import "./styles.css";
+
+const playlists = Array.isArray(playlistData)
+  ? playlistData
+  : playlistData.playlists ?? [];
 
 function angleFromPointer(event, element) {
   const rect = element.getBoundingClientRect();
@@ -18,6 +22,37 @@ function normalizeDelta(delta) {
   return delta;
 }
 
+function formatDate(value) {
+  if (!value) return null;
+
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return value;
+
+  return date.toLocaleString([], {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+}
+
+function withTotal(value, total) {
+  if (value === undefined || value === null) return null;
+  return total ? `${value} of ${total}` : value;
+}
+
+function getTrackDetails(song) {
+  if (!song) return [];
+
+  return [
+    ["Play count", song.playCount],
+    ["Last played", formatDate(song.lastPlayed)],
+    ["Album", song.album],
+    ["Release year", song.releaseYear],
+    ["Genre", song.genre],
+    ["Duration", song.duration],
+  ].filter(([, value]) => value !== undefined && value !== null && value !== "");
+}
+
 function App() {
   const [view, setView] = useState("playlists");
   const [playlistIndex, setPlaylistIndex] = useState(0);
@@ -30,8 +65,9 @@ function App() {
   const audioContextRef = useRef(null);
   const audioUnlockedRef = useRef(false);
 
-  const currentPlaylist = playlists[playlistIndex];
-  const visibleItems = view === "playlists" ? playlists : currentPlaylist.songs;
+  const currentPlaylist = playlists[playlistIndex] ?? { title: "", songs: [] };
+  const currentSong = currentPlaylist.songs?.[songIndex];
+  const visibleItems = view === "playlists" ? playlists : currentPlaylist.songs ?? [];
   const selectedIndex = view === "playlists" ? playlistIndex : songIndex;
 
   const wake = () => {
@@ -144,6 +180,12 @@ function App() {
   }, [view, selectedIndex]);
 
   useEffect(() => {
+    if (view === "track") {
+      screenBodyRef.current?.scrollTo({ top: 0 });
+    }
+  }, [view, songIndex]);
+
+  useEffect(() => {
     const onKeyDown = (event) => {
       const keyMap = {
         ArrowUp: () => move(-1),
@@ -168,10 +210,10 @@ function App() {
 
     const currentIndex = view === "playlists" ? playlistIndex : songIndex;
     const maxIndex =
-      view === "playlists" ? playlists.length - 1 : currentPlaylist.songs.length - 1;
+      view === "playlists" ? playlists.length - 1 : (currentPlaylist.songs?.length ?? 0) - 1;
     const nextIndex = Math.min(Math.max(currentIndex + direction, 0), maxIndex);
 
-    if (nextIndex === currentIndex) return;
+    if (nextIndex === currentIndex || nextIndex < 0) return;
 
     playClickWheelTick();
     if (view === "playlists") {
@@ -186,6 +228,9 @@ function App() {
     if (view === "playlists") {
       setView("songs");
       setSongIndex(0);
+    } else if (view === "songs") {
+      setView("track");
+      setIsPlaying(true);
     } else {
       setIsPlaying(true);
     }
@@ -193,17 +238,16 @@ function App() {
 
   const back = () => {
     wake();
-    if (view === "songs") setView("playlists");
+    if (view === "track") setView("songs");
+    else if (view === "songs") setView("playlists");
   };
 
   const previous = () => {
-    if (view === "songs") move(-1);
-    else move(-1);
+    move(-1);
   };
 
   const next = () => {
-    if (view === "songs") move(1);
-    else move(1);
+    move(1);
   };
 
   const togglePlay = () => {
@@ -211,45 +255,57 @@ function App() {
     setIsPlaying((value) => !value);
   };
 
+  const headerTitle =
+    view === "playlists"
+      ? "Playlists"
+      : view === "songs"
+        ? currentPlaylist.title
+        : currentSong?.title ?? "Track";
+
   return (
     <main className="page-shell">
       <section className="ipod" aria-label="Music player interface">
         <div className="ipod-top-shine" />
         <div className={`screen ${backlightOn ? "screen-on" : "screen-dim"}`}>
-          <ScreenHeader
-            title={view === "playlists" ? "Playlists" : currentPlaylist.title}
-          />
+          <ScreenHeader title={headerTitle} />
           <div className="screen-body" ref={screenBodyRef}>
-            <ul className="menu-list">
-              {visibleItems.map((item, index) => (
-                <li
-                  key={item.id || `${item.title}-${index}`}
-                  ref={index === selectedIndex ? selectedItemRef : null}
-                  className={index === selectedIndex ? "selected" : ""}
-                  onClick={() => {
-                    wake();
-                    if (view === "playlists") {
-                      setPlaylistIndex(index);
-                      setView("songs");
-                      setSongIndex(0);
-                    } else {
-                      setSongIndex(index);
-                      setIsPlaying(true);
-                    }
-                  }}
-                >
-                  <div>
-                    <strong>{item.title}</strong>
-                    <small>
-                      {view === "playlists" ? item.date : item.artist}
-                    </small>
-                  </div>
-                  <span className="meta">
-                    {view === "playlists" ? item.songs.length : item.duration}
-                  </span>
-                </li>
-              ))}
-            </ul>
+            {view === "track" ? (
+              <TrackDetails song={currentSong} isPlaying={isPlaying} />
+            ) : (
+              <ul className="menu-list">
+                {visibleItems.map((item, index) => (
+                  <li
+                    key={item.id || `${item.title}-${index}`}
+                    ref={index === selectedIndex ? selectedItemRef : null}
+                    className={index === selectedIndex ? "selected" : ""}
+                    onClick={() => {
+                      wake();
+                      if (view === "playlists") {
+                        setPlaylistIndex(index);
+                        setView("songs");
+                        setSongIndex(0);
+                      } else {
+                        setSongIndex(index);
+                        setView("track");
+                        setIsPlaying(true);
+                      }
+                    }}
+                  >
+                    <div>
+                      <strong>{item.title}</strong>
+                      <small>
+                        {view === "playlists"
+                          ? item.date || formatDate(item.lastPlayed)
+                          : item.artist}
+                      </small>
+                    </div>
+                    <span className="meta">
+                      {view === "playlists" ? item.songs?.length ?? 0 : item.duration}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </div>
 
@@ -264,6 +320,33 @@ function App() {
         />
       </section>
     </main>
+  );
+}
+
+function TrackDetails({ song, isPlaying }) {
+  if (!song) {
+    return <p className="empty-state">No track selected.</p>;
+  }
+
+  const details = getTrackDetails(song);
+
+  return (
+    <section className="track-detail">
+      <div className="track-hero">
+        <span className="now-playing">{isPlaying ? "Now Playing" : "Paused"}</span>
+        <h2>{song.title}</h2>
+        <p>{song.artist || "Unknown Artist"}</p>
+      </div>
+
+      <dl className="track-facts">
+        {details.map(([label, value]) => (
+          <div key={label}>
+            <dt>{label}</dt>
+            <dd>{value}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
   );
 }
 
